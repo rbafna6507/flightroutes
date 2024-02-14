@@ -122,14 +122,12 @@ This runs three times to find three unique routes from the source to the destina
 ### React
 The React app is simple - with two input boxes, it collects the user's desired source and destination airports. After inputs have been substituted, we fetch the Flask API with the proper parameters. On response, we parse the paths into separate strings and display them as `h3` elements. We also display relevant metadata such as distance and time.
 
-### Visualizer
-This part of the repo, was by far the hardest and worst one to implement. Specifically, none of the issues I faced were logical issues, but semantic and library related. I ended up using `networkx` as my plotting and organization library of the graph. From there, it was getting a list of edges generally, that were visited during A*, and that lie on the optimal route. I plot each of those accordingly in a for loop to create an animated visualization.
-
 
 ## Thoughts, drawbacks, and next steps
 - This implementation uses distance as its optimization metric because of how easy it was to find and use. Real optimizations use other metrics including fuel use, cost, carbon output, and distance. None of the other metrics were as accessible as distance, but I would love to see how paths change based on the metric.
-- This was hacked together in just a few days, so I wasn't able to extensively test the algorithm (but I did come up with a few testing strategies). So with more time, I'd definitely like to prove the correctness of this implementation using more tests. 
-- I'd like to expand the functionality of the visualizer by bringing it onto the React app. Its something I considered, but wasn't able to fully execute on this time due to time constraints.
+- I wanted to incorporate some of the feedback I got from going over the technical portion with Dibyo + Rohan (like implementing a database for a cache and more transparent metrics), but the fundamental problem was so diffferent and offered a different set of challenges there wasn't much I could incorporate besides design and API structure.
+- This was hacked together in just a few days, so I wasn't able to extensively test the algorithm (but I did come up with a few testing strategies). So with more time, I'd definitely like to prove the correctness of this implementation using more tests. Some ideas I have are: limiting the routes infile to just a few airports and rigorously testing all connections, more comprehensive API tests, more unittests to see if each component works properly.
+- I'd like to add the functionality of a visualizer onto the React app. Its something I considered, but wasn't able to fully execute on this time due to time constraints. 
 
 
 Extra note: I intentionally left out some other really nice to have things (specific to the API and React app eg. styling, custom errors, input validations) because I was hacking this together over the weekend.
