@@ -47,7 +47,7 @@ You now have a fully set up environment, and will be able to use both the Flask 
 
 ## Usage
 
-### Flask API
+### Flask API (`/route/source=<sourceIATA>&dest=<destIATA>`)
 
 The Flask API supports one endpoint: `/route/source=<sourceIATA>&dest=<destIATA>`. This endpoint takes in two strings of 3 letter IATA codes: the source and desintination IATA airport codes. It returns a JSON object containing three optimal paths that can be taken from the source to the destination, the total distance for each path, and the time it will take to traverse each path.
 
@@ -91,6 +91,8 @@ Example response:
 }
 ```
 
+Distance is calculated in Kilometers using the Haversine distance between latitudes + longitudes. Time is calculated by assuming a 900 KMH average speed along each route.
+
 The API is equipped to handle invalid input queries and internal errors. In the case of no path existing, which is rare, it will return a helpful message instead of an array holding the path.
 
 <b>Note: The graph of airports is calculated and loaded into memory on startup of the Flask app. </b>
@@ -99,7 +101,7 @@ The API is equipped to handle invalid input queries and internal errors. In the 
 ### React Frontend
 The frontend built in React is a very simple page containing two input boxes and a submit button - no fancy bells and whistles here. Simply input your desired airports to find a path between, and hit submit.
 
-From there, the app will ping the Flask API to return three optimal routes. You'll see all three routes, and their related total distances and time to travel.
+From there, the app will ping the Flask API to return three optimal routes. You'll see all three routes (if three were found), and their related total distances and time to travel.
 
 
 ## Extra notes
