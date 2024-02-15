@@ -2,6 +2,7 @@ from src.utils import calculate_distance, iata_to_airport, InvalidRequest, Airpo
 from collections import defaultdict
 from typing import List, Dict, Tuple
 import heapq
+import pdb
 
 
 def distance_to(current_airport: Airport, goal_airport: Airport) -> float:
@@ -81,11 +82,17 @@ def a_star(adj_list: Dict[str, Tuple[Airport, int]], start: str, goal: str, airp
                 path =reconstruct_path(came_from, current[1])
                 top_paths['paths'].append(path)
                 top_paths['distance'].append(f_score[goal])
-                # considering an average speed of 900 kmh, we divide teh distance by that speed to get time
+                # considering an average speed of 900 kmh, we divide the distance by that speed to get time
                 top_paths['time'].append(f_score[goal] / 900)
                 top_n = top_n + 1
-                if path[1] in adj_list:  
-                    adj_list.pop(path[1])
+                if path[1] in adj_list:
+                    if len(path) == 2:
+                        for i in range(0, len(adj_list[start])):
+                            if adj_list[start][i][0].iata == goal:
+                                adj_list[start][i] = (adj_list[start][i][0], float('inf'))
+                    else:
+                        adj_list.pop(path[1])
+                    
                 break
             
             if current[1] not in adj_list:

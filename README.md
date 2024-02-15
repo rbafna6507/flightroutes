@@ -1,7 +1,5 @@
 ## Optimal Flight Routes
 
-
-
 This repository contains two main parts: a Flask API and a React frontend.
 
 This is an path finding experiment using A* and historical flight and airport information. Specifically, this repository uses the OpenFlights dataset (both Routes and Airports), as seed data for airport locations and airport routes. I'll get deeper into the technical details below, but the tldr: this is an interesting (and relevant) experiment in graph theory and finding the shortest path between two specified points (airports), after generating a weighted map (airplane routes). 

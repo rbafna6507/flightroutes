@@ -38,21 +38,21 @@ function App() {
         let best_path = "";
         for (let i = 0; i < data.paths[0].length; i++){
           best_path= best_path + data.paths[0][i];
-          best_path = best_path + "->";
+          best_path = best_path + " to ";
         }
         let second_path = "";
         for (let i = 0; i < data.paths[1].length; i++){
           second_path= second_path + data.paths[1][i];
-          second_path = second_path + "->";
+          second_path = second_path + " to ";
         }
         let third_path = "";
         for (let i = 0; i < data.paths[2].length; i++){
           third_path= third_path + data.paths[2][i];
-          third_path = third_path + "->";
+          third_path = third_path + " to ";
         }
-        setBest(best_path.slice(0,-2)); // Assuming the API returns result in JSON format with a 'path' key
-        setSecond(second_path.slice(0,-2));
-        setThird(third_path.slice(0,-2));
+        setBest(best_path.slice(0,-4)); // Assuming the API returns result in JSON format with a 'path' key
+        setSecond(second_path.slice(0,-4));
+        setThird(third_path.slice(0,-4));
         setDistances(data.distances)
         setTimes(data.times)
       } catch (error) {
@@ -91,16 +91,17 @@ function App() {
         </Button>
       </Form>
       <br />
-      <h4>Result Paths:</h4>
+      <h3>Result Paths:</h3>
+      <br></br>
       {/* {result && <h3>{result}</h3>} */}
-      {best_path && <h3>{best_path} </h3>}
-      {times && <h4>Total distance traveled: {distances[0].toFixed(2)} KMs. <br />Total Time during travel: {times[0].toFixed(2)} hours.</h4>}
+      {best_path && <h4>{best_path} </h4>}
+      {times && <h5>Total distance traveled: {distances[0].toFixed(2)} kms. <br />Total time during travel: {times[0].toFixed(2)} hours.</h5>}
       <br />
-      {second_path && <h3>{second_path}</h3>}
-      {times && <h4>Total distance traveled: {distances[1].toFixed(2)} KMs. <br />Total Time during travel: {times[1].toFixed(2)} hours.</h4>}
+      {second_path && <h4>{second_path}</h4>}
+      {times && <h5>Total distance traveled: {distances[1].toFixed(2)} kms. <br />Total time during travel: {times[1].toFixed(2)} hours.</h5>}
       <br />
-      {third_path && <h3>{third_path}</h3>}
-      {times && <h4>Total distance traveled: {distances[2].toFixed(2)} KMs. <br />Total Time during travel: {times[2].toFixed(2)} hours.</h4>}
+      {third_path && <h4>{third_path}</h4>}
+      {times && <h5>Total distance traveled: {distances[2].toFixed(2)} kms. <br />Total time during travel: {times[2].toFixed(2)} hours.</h5>}
     </div>
   );
 }

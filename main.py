@@ -1,6 +1,7 @@
 from src.utils import check_inputs, create_routes, create_airports, create_dest_list, create_source_list, Graph, InvalidRequest, ProcessingError
 from src.a_star import a_star
 from flask import Flask, jsonify
+from copy import deepcopy
 import json
 # from flask_caching import Cache
 
@@ -47,8 +48,9 @@ def calculate_route(source, dest):
             "Unfortunately, our data source does not support any route or airport for destination IATA.",
             400
         )
-        
-    data = a_star(dict(graph.adj_list), source, dest, graph.airports)
+    
+    adj_list_copy = deepcopy(graph.adj_list)
+    data = a_star(adj_list_copy, source, dest, graph.airports)
     response = jsonify({'paths': data['paths'], 'distances': data['distance'], 'times':data['time']})
     response.headers.add('Access-Control-Allow-Origin', '*')
 
